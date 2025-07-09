@@ -2,7 +2,8 @@ import express from 'express'
 import morgan from 'morgan'
 import colors from 'colors'
 import { db } from './config/db'
-import router from './routes/PruebaTecnicaRouter'
+import routerCrud from './routes/PruebaTecnicaRouter'
+import routerLogin from './routes/AuthRouter'
 
 export async function connectDB() {
     try {
@@ -22,6 +23,7 @@ app.use(morgan('dev'))
 
 app.use(express.json())
 
-app.use('/api/pruebatecnica',router)
+app.use('/api/pruebatecnica',routerCrud)
+app.use('/api/auth',routerLogin)
 
 export default app

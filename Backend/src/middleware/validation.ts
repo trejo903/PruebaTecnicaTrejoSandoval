@@ -37,3 +37,33 @@ export const userValidationRules=():ValidationChain[]=>[
         .notEmpty().withMessage('El codigo postal no puede estar vacio')
         .isPostalCode('MX').withMessage('Codigo postal invalido para Mexico')
 ]
+
+
+
+export const registerValidationRules=[
+    body('email')
+        .notEmpty().withMessage('El email es obligatorio')
+        .isEmail().withMessage('Formato de correo invalido')
+        .isLowercase().withMessage('El email debe de ir en minusculas'),
+    body('password')
+        .notEmpty().withMessage('La contraseña es obligatoria')
+        .isLength({min:6}).withMessage('La contraseña debe tener al menos 6 caracteres'),
+    body('confirmPassword')
+        .notEmpty().withMessage('Debes confirmar la contraseña')
+        .custom((value,{req})=>{
+            if(value !== req.body.password){
+                throw new Error('Las contraseñas no coinciden')
+            }
+            return true;
+        })
+]
+
+export const loginValidationRules=[
+    body('email')
+        .notEmpty().withMessage('El email es obligatorio')
+        .isEmail().withMessage('Formato de correo invalido')
+        .isLowercase().withMessage('El email debe de ir en minusculas'),
+    body('password')
+        .notEmpty().withMessage('La contraseña es obligatoria')
+        .isLength({min:6}).withMessage('La contraseña debe tener al menos 6 caracteres')
+]

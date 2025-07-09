@@ -1,7 +1,55 @@
 import type {Request,Response} from 'express'
 import Usuario from '../models/Usuario'
 import Address from '../models/Address';
+import { Op } from 'sequelize';
+
 export class PruebaTecnicaController{
+    static getUsers=async(req:Request,res:Response)=>{
+        try {
+            const page = Math.max(1,parseInt(req.query.page as string) || 1)
+            const limit = Math.max(1,parseInt(req.query.limit as string) || 10)
+            const role = req.query.role as string | undefined
+            const statusQ = req.query.status as string | undefined
+            const search = req.query.search as string | undefined
+            const offset = (page - 1) * limit
+            const where:any ={}
+            if(role) where.role = role;
+            if(statusQ !== undefined){
+                where.status = statusQ === 'true'
+            }
+            if(search){
+                where[Op.or]=[
+                    {firstName:{[Op.like]:`%${search}`}},
+                    {lastName:{[Op.like]:`%${search}`}},
+                    {email:{[Op.like]:`%${search}`}},
+                ]
+            }
+            const{count,rows} = await Usuario.findAndCountAll({
+                where,
+                include:[Address],
+                limit,
+                offset,
+                order:[['id','ASC']]
+            })
+
+            res.json({
+                data:rows,
+                meta:{
+                    totalItems:count,
+                    totalPages:Math.ceil(count/limit),
+                    currentPage:page,
+                    perPage:limit
+                }
+            })
+            return
+        } catch (error) {
+            res.status(500).json({msg:'Error al obtener los usuarios'})
+            return
+        }
+    }
+
+
+
     static createUser=async(req:Request,res:Response)=>{
         const t = await Usuario.sequelize!.transaction();
         try {

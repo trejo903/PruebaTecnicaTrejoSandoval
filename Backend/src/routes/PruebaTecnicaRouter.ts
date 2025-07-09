@@ -7,6 +7,10 @@ import { handleInputErrors, userValidationRules } from "../middleware/validation
 const router = Router()
 
 
+router.get('/users',
+    PruebaTecnicaController.getUsers
+)
+
 router.post('/users',
     userValidationRules(),
     handleInputErrors,
