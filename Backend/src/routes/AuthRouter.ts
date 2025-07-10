@@ -23,7 +23,6 @@ router.post('/create-account',
 )
 
 router.post('/login',
-    authLimiter,
     loginValidationRules,
     handleInputErrors,
     AuthController.login

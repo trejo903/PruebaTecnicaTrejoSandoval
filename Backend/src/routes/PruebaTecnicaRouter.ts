@@ -2,10 +2,12 @@ import { Router } from "express";
 import { PruebaTecnicaController } from "../controllers/PruebaTecnicaController";
 import { param } from "express-validator";
 import { handleInputErrors, userValidationRules } from "../middleware/validation";
+import { authenticateJWT } from "../utils/auth";
 
 
 const router = Router()
 
+router.use('/users',authenticateJWT)
 
 router.get('/users',
     PruebaTecnicaController.getUsers
