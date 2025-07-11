@@ -1,4 +1,4 @@
-# PruebaTécnica Rejos Andoval Monorepo
+# PruebaTécnica Trejo Sandoval Monorepo
 
 Este repositorio contiene dos proyectos independientes:
 
@@ -13,3 +13,4 @@ Este repositorio contiene dos proyectos independientes:
 > Al desperezarse puede tardar **30–60 s** en responder a la primera petición.  
 > Si ves ese retraso, simplemente vuelve a enviar la misma petición desde el frontend.
 
+https://prueba-tecnica-trejo-sandoval.vercel.app/
