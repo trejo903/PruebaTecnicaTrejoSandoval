@@ -69,7 +69,7 @@ class Usuario extends Model{
     declare phoneNumber:number
 
     @Column({
-        type:DataType.STRING(12),
+        type:DataType.STRING(20),
         allowNull:false,
         defaultValue:'Usuario'
     })
@@ -94,7 +94,7 @@ class Usuario extends Model{
 
 
     @Column({
-        type:DataType.STRING(200),
+        type:DataType.STRING(500),
         allowNull:false,
         defaultValue: 'https://res.cloudinary.com/dgpd2ljyh/image/upload/v1748920792/default_nlbjlp.jpg',
         validate:{

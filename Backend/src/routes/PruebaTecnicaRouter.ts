@@ -19,6 +19,15 @@ router.post('/users',
     PruebaTecnicaController.createUser
 )
 
+router.get(
+  '/users/:id',
+  param('id').isInt().withMessage('Id de usuario inválido'),
+  handleInputErrors,
+  PruebaTecnicaController.getUserById
+);
+
+
+
 router.put('/users/:id',
     param('id').isInt().withMessage('Id de usuario invalido'),
     userValidationRules(),

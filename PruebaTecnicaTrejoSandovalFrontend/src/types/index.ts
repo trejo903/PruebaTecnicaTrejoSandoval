@@ -27,3 +27,27 @@ export interface CreateUserForm {
   profilePicture: string
   address: Address
 }
+
+
+export interface User {
+  id: number
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  role: string
+  status: boolean
+  profilePicture: string
+  createdAt: string
+  updatedAt: string
+  address: Address
+}
+
+
+export interface Meta {
+  totalItems: number
+  totalPages: number
+  currentPage: number
+  perPage: number
+}
+
