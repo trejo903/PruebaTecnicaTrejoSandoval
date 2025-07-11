@@ -23,7 +23,7 @@ const app = express()
 app.use(morgan('dev'))
 
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://prueba-tecnica-trejo-sandoval.vercel.app',
     credentials:true
 }))
 
